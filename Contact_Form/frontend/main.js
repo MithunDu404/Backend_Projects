@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch('http://localhost:5001/api/contact', {
+            const response = await fetch('https://backend-contact-form.onrender.com/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     statsBtn.addEventListener('click', async () => {
         try {
-            const res = await fetch('http://localhost:5001/api/stats');
+            const res = await fetch('https://backend-contact-form.onrender.com/api/stats');
             const data = await res.json();
 
             if (data.total_submissions !== undefined) {
