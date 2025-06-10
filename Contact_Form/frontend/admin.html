@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f7f7f7;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        a {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Contact Form Submissions</h2>
+    <table id="messagesTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Subject</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function fetchMessages() {
+            try {
+                const res = await fetch("http://localhost:5001/api/messages");
+                const messages = await res.json();
+
+                const tbody = document.querySelector('#messagesTable tbody');
+                tbody.innerHTML = '';
+
+                messages.forEach(msg => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${msg.firstName || ''} ${msg.lastName || ''}</td>
+                        <td><a href="mailto:${msg.email}">${msg.email}</a></td>
+                        <td>${msg.phone || '-'}</td>
+                        <td>${msg.subject || '-'}</td>
+                        <td>${msg.message || ''}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (err) {
+                alert("Failed to load messages.");
+                console.error(err);
+            }
+        }
+
+        fetchMessages();
+    </script>
+</body>
+</html>
