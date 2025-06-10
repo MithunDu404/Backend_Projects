@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        if (!validateForm()) return;
+        if (!validateForm()) return; 
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
