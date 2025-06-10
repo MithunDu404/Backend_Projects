@@ -52,7 +52,7 @@
     <script>
         async function fetchMessages() {
             try {
-                const res = await fetch("https://backend-contact-form.onrender.com1/api/messages");
+                const res = await fetch("https://backend-contact-form.onrender.com/api/messages");
                 const messages = await res.json();
 
                 const tbody = document.querySelector('#messagesTable tbody');
